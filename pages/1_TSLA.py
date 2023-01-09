@@ -12,7 +12,7 @@ from datetime import datetime
 
 
 #main function
-st.write("# Tesla")
+st.write("# Information on TSLA")
 st.subheader("""Daily **closing price** for """ + "TLSA")
 #get data on searched ticker
 stock_data = yf.Ticker("TSLA")

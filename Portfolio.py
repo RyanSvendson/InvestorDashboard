@@ -120,7 +120,7 @@ for seconds in range(100):
                 delta = round(portfolio_df.at[4,'CURRENT PRICE'] - dbf.prev_close('JNJ'), 2)
             )
 
-            
+        st.write("")    
 
         st.dataframe(portfolio_df)
 

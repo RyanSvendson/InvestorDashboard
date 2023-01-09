@@ -12,8 +12,8 @@ from datetime import datetime
 
 
 #main function
-st.write("# Microsoft")
-st.subheader("""Daily **closing price** for """ + "TLSA")
+st.write("# Information on Microsoft")
+st.subheader("""Daily **closing price** for """ + "MSFT")
 #get data on searched ticker
 stock_data = yf.Ticker("MSFT")
 #get historical data for searched ticker
