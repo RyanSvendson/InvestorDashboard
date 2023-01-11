@@ -7,15 +7,12 @@ import dashboard_features as dbf
 
 st.set_page_config(
     page_title="Investor Dashboard",
-    page_icon="👋",
+    page_icon="📈",
     layout="wide"
 )
 
 # Read in portfolio data
 portfolio_df = pd.read_excel("./portfolio_example.xlsx")
-# transact_df = portfolio_df.copy()
-
-#tickers = portfolio_df['SYMBOL']
 
 # Header
 st.write("# Portfolio Overview")
@@ -79,7 +76,7 @@ for seconds in range(100):
         fig_col1, fig_col2, fig_col3, fig_col4, fig_col5 = st.columns([5.5,0.25,1,0.25,1], gap='small')
         #col2 and col4 acts as placeholders/spacers for adjacent columns
         
-        # Pie Chart
+        # Nested Pie Chart
         with fig_col1:
             st.write(dbf.fig1(portfolio_df))
 

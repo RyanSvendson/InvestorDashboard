@@ -5,6 +5,7 @@ from yahoo_fin import stock_info as si
 import yfinance as yf
 import streamlit as st
 
+# Automate stock pages after reading in excel file
 # def initialize_pages(stock_list):
 # #clear or create pages folder
 #     """
@@ -12,9 +13,9 @@ import streamlit as st
 #     final_directory = os.path.join(current_directory, r'pages')
 #     if not os.path.exists(final_directory):
 #         os.makedirs(final_directory)
-
+#
 #     OR clear
-
+#
 #     directory = './pages'
 #     for file in os.listdir(directory):
 #         os.remove(os.path.join(directory, file))
@@ -22,28 +23,19 @@ import streamlit as st
 # #save file for each stock with page layout
 
 
-
-# #def prep_df():
-
-    
-
-
-
 # Update df with live price
 def update_df(df):
+
     counter = 0
     for ticker in df['SYMBOL']:
         df.at[counter,'CURRENT PRICE'] = round(si.get_live_price(ticker), 2)
-        #portfolio_df.at[counter, 'CURRENT VALUE'] = round((portfolio_df.at[counter, 'QUANTITY'] * portfolio_df.at[counter,'CURRENT PRICE'] ),2)
         counter+=1
     df['CURRENT VALUE'] = df['QUANTITY'] * df['CURRENT PRICE']
     df['UNREALIZED P&L'] = df['CURRENT VALUE'] - df['PURCHASE COST']
     #df['AVG PURCHASE PRICE'] if needed for sidebar trading
     return df
     
-
-
-
+# Dataframe for portfolio performance
 def pf_performance(df):
     # Set up dataframe with stock['close']
     performance_df = pd.DataFrame()
@@ -72,18 +64,6 @@ def fig2(df):
     fig2.update_xaxes(type='category')
     fig2.update_layout(margin=dict(t=30, b=0, l=0, r=0))
     return fig2
-
-# def pf_history(stock_list):
-#     '''
-#     total_asset = 0
-#     for stock in stock_list:
-#     '''    
-
-# def buy_stock(amount, stock, df):
-#     '''df.at[]'''
-
-# def sell_stock(amount, stock, df):
-#     """"""
 
 def fig1(df):
     a = df.at[0,'PURCHASE COST']
@@ -123,3 +103,25 @@ def fig1(df):
         title={'x':0.45},
         font=dict(size=18))
     return fig
+
+
+def fig2(df):
+
+    fig2 = go.Figure()
+    fig2.add_trace(go.Scatter(x=df.index, y=df['Total'], mode='lines'))
+    fig2.update_xaxes(type='category')
+    fig2.update_layout(margin=dict(t=30, b=0, l=0, r=0))
+    return fig2
+
+# SIDEBAR TRADING FUNCTIONS
+# def pf_history(stock_list):
+#     '''
+#     total_asset = 0
+#     for stock in stock_list:
+#     '''    
+
+# def buy_stock(amount, stock, df):
+#     '''df.at[]'''
+
+# def sell_stock(amount, stock, df):
+#     """"""
