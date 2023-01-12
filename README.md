@@ -8,6 +8,10 @@ An investor dashboard showing current holdings and allocation as well as dedicat
     Plotly --> pip install plotly
     yfinance --> pip install yfinance
     yahoo_fin --> pip install yahoo-fin
+    
+    In terminal:
+    clone repo
+    streamlit run Portfolio.py
 
 ## Usage
 
